@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="TextContainer" style="height: 296px; width: 624px; align-items: stretch; justify-content: space-between; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;/Assets/UI/UIAssets/Dark UI/Free/BTN_A2.png&apos;); -unity-background-image-tint-color: rgb(255, 255, 255); -unity-background-scale-mode: stretch-to-fill;">
+        <ui:Label text="Label" display-tooltip-when-elided="true" name="Text" style="font-size: 50px; left: 31px; bottom: -20px;" />
+    </ui:VisualElement>
+</ui:UXML>

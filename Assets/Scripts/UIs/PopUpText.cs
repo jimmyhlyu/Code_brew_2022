@@ -17,11 +17,6 @@ public static class PopUpText
     public static void Pop(string msg)
     {
         var text = textPosition1.GetComponent<TMP_Text>();
-
         text.text = msg;
-          
-        
-      
-        
     }
 }

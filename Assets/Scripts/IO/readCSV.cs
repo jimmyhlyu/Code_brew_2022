@@ -12,15 +12,22 @@ namespace IO
         public string Num;
         public string Content;
         public string Weight;
+        public string URL;
 
     }
-    public class ReadCsv
+    public static class ReadCsv
     {
         public static void ReadIO(List<Sentence> s)
         {
-            string filePath = "./Text.csv";
+            string filePath = @"Assets/Resources/Test.csv";
             StreamReader reader = null;
-            if (!File.Exists(filePath)) return;
+            if (!File.Exists(filePath))
+            {
+                
+                return;
+            }
+
+            
             reader = new StreamReader(File.OpenRead(filePath));
             while (!reader.EndOfStream)
             {
@@ -30,7 +37,8 @@ namespace IO
                 {
                     Num = values[0],
                     Content = values[1],
-                    Weight = values[2]
+                    Weight = values[2],
+                    URL = values[3]
                 };
 
                 s.Add(sen);
@@ -48,7 +56,7 @@ namespace IO
             Debug.Log(ilength);
             for (int i = 0; i < ilength; i++)
             {
-                sbOutput.AppendLine(string.Join(",", sen[i].Num,sen[i].Content,sen[i].Weight));
+                sbOutput.AppendLine(string.Join(",", sen[i].Num,sen[i].Content,sen[i].Weight,sen[i].URL));
             }
             File.WriteAllText(strFilePath, sbOutput.ToString());
             

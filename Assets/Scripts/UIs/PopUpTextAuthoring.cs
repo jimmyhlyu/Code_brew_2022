@@ -3,9 +3,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using IO;
 using TMPro;
 using UnityEngine;
 using Unity.UI;
+using UnityEditor;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -21,31 +23,66 @@ public class PopUpTextAuthoring : MonoBehaviour
     private string acturalString = "";
     private static string finalString;
     private int index;
-    public Button button;
-    
+    private static bool  count = false;
+    public Button nextButton;
+    public static List<Sentence> Sentences;
+
+
+
+
     private void OnEnable()
     {
         PopUpText.TextPosition1 = textPosition1;
+        
         
     }
 
     public static void Try()
     {
-        finalString = ("fkyea");
+        
         Debug.Log("pressed");
 
     }
 
     private void Start()
     {
-        PopText("helloworld");
+        Sentences = AppMainControl.Sentences;
     }
 
+    private static int countForSentence = 0; 
     private void Update()
     {
-        Start();
+        nextButton.onClick.AddListener(Count);
+        
+        
+        if (count && countForSentence < Sentences.Capacity-1)
+        {
+            countForSentence += 1; 
+            acturalString = "";
+            index = 0;
+            PopText(Sentences[countForSentence].Content);
+            
+            
+            count = false;
+            
+        }
     }
 
+    public static void OpenURl()
+    {
+        if (countForSentence > Sentences.Capacity - 1)
+        {
+            return;
+        }
+        Application.OpenURL(Sentences[countForSentence].URL);
+        
+    }
+
+    public static void Count()
+    {
+        count = true; 
+    }
+    
     private void PopText(string String)
     {
         finalString = String;

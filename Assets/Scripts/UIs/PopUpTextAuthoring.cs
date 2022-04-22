@@ -30,7 +30,9 @@ public class PopUpTextAuthoring : MonoBehaviour
     public GameObject TextPositionList3 => textPositionList3;
     public GameObject TextPositionList4 => textPositionList4;
     public GameObject TextPositionList5 => textPositionList5;
-
+    public RawImage Earth;
+    public Texture happyEarth;
+    public Texture sadEarth;
 
     private string acturalString = "";
     private static string finalString;
@@ -87,6 +89,16 @@ public class PopUpTextAuthoring : MonoBehaviour
             countForSentence += 1; 
             acturalString = "";
             index = 0;
+            
+            if (Convert.ToInt32(Sentences[countForSentence].Weight) > 0)
+            {
+                Earth.texture = happyEarth;
+            }
+            else
+            {
+                Earth.texture = sadEarth;
+            }
+            
             PopText(Sentences[countForSentence].Content);
             
             

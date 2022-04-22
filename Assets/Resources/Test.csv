@@ -1,8 +1,8 @@
 NO,Content,Weight,Url,redord/yes,record/no,Title
-1,Hello,0,0,0,0,hello1
+1,Hello,1,0,0,0,hello1
 2,New,5,www.youtube.com,0,0,hello2
-2,Vote,0,1,0,0,hello3
-3,aaa,0,5555555,0,0,hello4
-4,aaa,0,5555555,0,0,hello5
-5,aaa,0,55555555,0,0,hello6
-6,aaa,0,555555,0,0,hello7
+2,Vote,-1,1,0,0,hello3
+3,aaa,1,5555555,0,0,hello4
+4,aaa,-1,5555555,0,0,hello5
+5,aaa,1,55555555,0,0,hello6
+6,aaa,-1,555555,0,0,hello7

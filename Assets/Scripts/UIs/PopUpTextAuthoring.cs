@@ -6,9 +6,10 @@ using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using UnityEngine;
 using Unity.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
-
+using Button = UnityEngine.UI.Button;
 
 
 public class PopUpTextAuthoring : MonoBehaviour
@@ -18,17 +19,31 @@ public class PopUpTextAuthoring : MonoBehaviour
     public PauseInfo pauseInfo;
     public GameObject TextPosition1 => textPosition1;
     private string acturalString = "";
-    private string finalString;
-    private int index; 
+    private static string finalString;
+    private int index;
+    public Button button;
     
     private void OnEnable()
     {
         PopUpText.TextPosition1 = textPosition1;
+        
+    }
+
+    public static void Try()
+    {
+        finalString = ("fkyea");
+        Debug.Log("pressed");
+
     }
 
     private void Start()
     {
-        PopText("hello world");
+        PopText("helloworld");
+    }
+
+    private void Update()
+    {
+        Start();
     }
 
     private void PopText(string String)
@@ -77,7 +92,7 @@ public class PopUpTextAuthoring : MonoBehaviour
                 ReproduceText();
                 yield break;
             default:
-                yield return new WaitForSeconds(pauseInfo.normalPause);
+                yield return new WaitForSecondsRealtime(pauseInfo.normalPause);
                 ReproduceText();
                 yield break;
         }

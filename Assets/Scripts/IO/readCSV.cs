@@ -18,7 +18,7 @@ namespace IO
     {
         public static void ReadIO(List<Sentence> s)
         {
-            string filePath = @"C:\Users\rolli\OneDrive\Desktop\text.csv";
+            string filePath = "./Text.csv";
             StreamReader reader = null;
             if (!File.Exists(filePath)) return;
             reader = new StreamReader(File.OpenRead(filePath));
@@ -51,6 +51,8 @@ namespace IO
                 sbOutput.AppendLine(string.Join(",", sen[i].Num,sen[i].Content,sen[i].Weight));
             }
             File.WriteAllText(strFilePath, sbOutput.ToString());
+            
+            
         }
     }
 }

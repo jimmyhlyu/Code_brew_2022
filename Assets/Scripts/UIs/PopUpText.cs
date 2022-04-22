@@ -6,7 +6,10 @@ using UnityEngine.UI;
 
 public static class PopUpText
 {
+    
+
     private static GameObject textPosition1;
+    private static List<GameObject> textpositionsList;
 
     public static GameObject TextPosition1
     {
@@ -14,9 +17,15 @@ public static class PopUpText
         set => textPosition1 = value;
     }
 
-    public static void Pop(string msg)
+    public static List<GameObject> TextpositionsList
     {
-        var text = textPosition1.GetComponent<TMP_Text>();
+        get => textpositionsList;
+        set => textpositionsList = value;
+    }
+
+    public static void Pop(string msg, GameObject position)
+    {
+        var text = position.GetComponent<TMP_Text>();
         text.text = msg;
     }
 }

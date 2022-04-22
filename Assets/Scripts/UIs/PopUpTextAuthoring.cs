@@ -18,8 +18,20 @@ public class PopUpTextAuthoring : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject textPosition1;
+    public GameObject textPositionList1;
+    public GameObject textPositionList2;
+    public GameObject textPositionList3;
+    public GameObject textPositionList4;
+    public GameObject textPositionList5;
     public PauseInfo pauseInfo;
     public GameObject TextPosition1 => textPosition1;
+    public GameObject TextPositionList1 => textPositionList1;
+    public GameObject TextPositionList2 => textPositionList2;
+    public GameObject TextPositionList3 => textPositionList3;
+    public GameObject TextPositionList4 => textPositionList4;
+    public GameObject TextPositionList5 => textPositionList5;
+
+
     private string acturalString = "";
     private static string finalString;
     private int index;
@@ -33,8 +45,13 @@ public class PopUpTextAuthoring : MonoBehaviour
     private void OnEnable()
     {
         PopUpText.TextPosition1 = textPosition1;
-        
-        
+        PopUpText.TextpositionsList = new List<GameObject>();
+        PopUpText.TextpositionsList.Add(textPositionList1);
+        PopUpText.TextpositionsList.Add(textPositionList2);
+        PopUpText.TextpositionsList.Add(textPositionList3);
+        PopUpText.TextpositionsList.Add(textPositionList4);
+        PopUpText.TextpositionsList.Add(textPositionList5);
+
     }
 
     public static void Try()
@@ -47,6 +64,16 @@ public class PopUpTextAuthoring : MonoBehaviour
     private void Start()
     {
         Sentences = AppMainControl.Sentences;
+        int position = 0;
+        foreach (var sentence in Sentences)
+        {
+            if (sentence.URL.Length > 4)
+            {
+                PopUpText.Pop(sentence.title, PopUpText.TextpositionsList[position]);
+                position += 1;
+            }
+        }
+        
     }
 
     private static int countForSentence = 0; 
@@ -98,7 +125,7 @@ public class PopUpTextAuthoring : MonoBehaviour
             char letter = finalString[index];
 
             //Actualize on screen
-            PopUpText.Pop(Write(letter));
+            PopUpText.Pop(Write(letter),textPosition1);
 
             //set to go to the next
             index += 1;

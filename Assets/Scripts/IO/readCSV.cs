@@ -13,6 +13,9 @@ namespace IO
         public string Content;
         public string Weight;
         public string URL;
+        public string yes;
+        public string no;
+        public string title;
 
     }
     public static class ReadCsv
@@ -38,7 +41,10 @@ namespace IO
                     Num = values[0],
                     Content = values[1],
                     Weight = values[2],
-                    URL = values[3]
+                    URL = values[3],
+                    yes = values[4],
+                    no = values[5],
+                    title = values[6]
                 };
 
                 s.Add(sen);

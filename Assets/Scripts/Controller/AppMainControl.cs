@@ -11,6 +11,7 @@ public class AppMainControl : MonoBehaviour
     {
         
         ReadCsv.ReadIO(Sentences);
+        Debug.Log(Sentences[1].yes);
         
     }
 

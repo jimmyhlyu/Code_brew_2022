@@ -13,14 +13,28 @@ namespace IO
         public string Content;
         public string Weight;
         public string URL;
+<<<<<<< HEAD
+=======
+
+>>>>>>> bd9f974bd258b68e6877f11687ee47c9032a1b08
     }
-    public class ReadCsv
+    public static class ReadCsv
     {
         public static void ReadIO(List<Sentence> s)
         {
+<<<<<<< HEAD
             string filePath = @"Assets/resource/text.csv";
+=======
+            string filePath = @"Assets/Resources/Test.csv";
+>>>>>>> bd9f974bd258b68e6877f11687ee47c9032a1b08
             StreamReader reader = null;
-            if (!File.Exists(filePath)) return;
+            if (!File.Exists(filePath))
+            {
+                
+                return;
+            }
+
+            
             reader = new StreamReader(File.OpenRead(filePath));
             while (!reader.EndOfStream)
             {
@@ -52,6 +66,8 @@ namespace IO
                 sbOutput.AppendLine(string.Join(",", sen[i].Num,sen[i].Content,sen[i].Weight,sen[i].URL));
             }
             File.WriteAllText(strFilePath, sbOutput.ToString());
+            
+            
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using IO;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using Unity.UI;
 using UnityEditor;
@@ -33,6 +34,7 @@ public class PopUpTextAuthoring : MonoBehaviour
     public RawImage Earth;
     public Texture happyEarth;
     public Texture sadEarth;
+    public GameObject Health;
 
     private string acturalString = "";
     private static string finalString;
@@ -53,7 +55,7 @@ public class PopUpTextAuthoring : MonoBehaviour
         PopUpText.TextpositionsList.Add(textPositionList3);
         PopUpText.TextpositionsList.Add(textPositionList4);
         PopUpText.TextpositionsList.Add(textPositionList5);
-
+        PopUpText.Health = Health;
     }
 
     public static void Try()
@@ -67,13 +69,35 @@ public class PopUpTextAuthoring : MonoBehaviour
     {
         Sentences = AppMainControl.Sentences;
         int position = 0;
+        int weightSum = 0;
         foreach (var sentence in Sentences)
         {
             if (sentence.URL.Length > 4)
             {
+                int weight = Convert.ToInt32(sentence.Weight);
+                byte offset = Convert.ToByte(math.abs(weight) * 50) ;
+                if (weight > 0)
+                {
+                    var color = PopUpText.TextpositionsList[position].GetComponent<TMP_Text>();
+                    color.faceColor = new Color32(offset, 0, 0 ,255);
+                    color.SetMaterialDirty();
+                }
+                if (weight < 0)
+                {
+                    var color = PopUpText.TextpositionsList[position].GetComponent<TMP_Text>();
+                    color.faceColor = new Color32(0, offset, 0 ,255);
+                    color.SetMaterialDirty();
+                }
+
+                weightSum += weight;
                 PopUpText.Pop(sentence.title, PopUpText.TextpositionsList[position]);
                 position += 1;
             }
+
+            float healthValue = 78 - weightSum * 0.01f;
+            string healthText = "The earth's 'health' is in [" + healthValue + "%] today. " +
+                                "\n In this trend, it is estimated to become Zero in [357] years";
+            PopUpText.Pop(healthText, PopUpText.Health);
         }
         
     }
